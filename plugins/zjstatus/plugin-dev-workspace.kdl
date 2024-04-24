@@ -1,0 +1,56 @@
+layout {
+    pane split_direction="vertical" {
+        pane borderless=true
+    }
+
+    pane size=2 borderless=true {
+        plugin location="file:target/wasm32-wasi/debug/zjstatus.wasm" {
+            format_left  "{mode} #[fg=#89B4FA,bg=#181825,bold]{session} {tabs} "
+            format_center "{command_0} {command_1} {command_git_branch} {command_3}"
+            format_right "{tabs} {datetime}"
+            format_space "#[bg=#181825]"
+
+            // foo
+            border_enabled  "true"
+            border_char     "─"
+            border_format   "#[fg=#6C7086]{char}"
+            border_position "top"
+
+            hide_frame_for_single_pane "true"
+
+            mode_normal          "#[bg=blue] #[bg=yellow] "
+            mode_tmux            "#[bg=yellow] "
+            mode_default_to_mode "tmux"
+
+            tab_normal              "#[fg=#6C7086,bg=#181825] {index} {name} {floating_indicator} "
+            tab_normal_fullscreen   "#[fg=#6C7086,bg=#181825] {index} {name} [] "
+            tab_normal_sync         "#[fg=#6C7086,bg=#181825] {index} {name} <> "
+            tab_active              "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} {floating_total_count}{floating_indicator}{sync_indicator}{fullscreen_indicator}"
+            tab_separator           "#[fg=#6C7086,bg=#181825] | "
+            tab_floating_indicator  "F"
+            tab_sync_indicator      "S"
+            tab_fullscreen_indicator "FS"
+
+            command_0_command  "echo \"平仮名, ひらがな 📦\""
+            command_0_format    "#[fg=blue,bg=black] {exit_code} {stdout} "
+            command_0_interval  "1"
+
+            command_1_command   "date"
+            command_1_format    "#[fg=blue,bg=black] {exit_code} {stdout} "
+            command_1_interval  "1"
+
+            command_git_branch_command   "git rev-parse --abbrev-ref HEAD"
+            command_git_branch_format    "#[fg=red,bg=black] {stdout} "
+            command_git_branch_interval  "2"
+
+            command_3_command   "echo -e \"#[fg=red,bg=#000000,italic,bold] foo #[bg=red,fg=#000000,italic] bar \""
+            command_3_format    "{stdout}"
+            command_3_interval  "10"
+            command_3_rendermode "dynamic"
+
+            datetime          "#[fg=#6C7086,bg=#181825,bold] {format} "
+            datetime_format   "%A, %d %b %Y %H:%M"
+            datetime_timezone "Europe/Berlin"
+        }
+    }
+}
