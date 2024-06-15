@@ -12,6 +12,7 @@ keybinds {
         bind "Alt Down" { MoveFocus "Down"; }
         bind "Alt Up" { MoveFocus "Up"; }
         bind "Alt z" { ToggleFocusFullscreen; }
+        bind "Alt Z" { TogglePaneEmbedOrFloating; }
         bind "Alt w" {
           LaunchOrFocusPlugin "zellij:session-manager" {
             floating true
@@ -83,7 +84,7 @@ keybinds {
     }
     scroll {
         bind "Ctrl s" { SwitchToMode "Normal"; }
-        bind "e" { EditScrollback; SwitchToMode "Normal"; }
+        bind "e" { EditScrollback; SwitchToMode "Locked"; }
         bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
@@ -96,8 +97,8 @@ keybinds {
         // bind "Alt c" { Copy; }
     }
     search {
-        bind "Ctrl s" { SwitchToMode "Normal"; }
-        bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "Ctrl s" { SwitchToMode "Locked"; }
+        bind "Ctrl c" { ScrollToBottom; SwitchToMode "Locked"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
         bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
@@ -283,7 +284,7 @@ themes {
         white 202 211 245
         orange 245 169 127
     }
-    catppuccin-mocha {
+    catppuccin-mocha-2 {
         fg 205 214 244
         bg 88 91 112
         black 24 24 37
@@ -325,7 +326,7 @@ theme "catppuccin-mocha"
 
 // The name of the default layout to load on startup
 // Default: "default"
-default_layout "minimal"
+default_layout "zjstatus"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
