@@ -1,0 +1,22 @@
+swap_tiled_layout name="bottom" {
+  tab min_panes=2 {
+    pane split_direction="horizontal" {
+      pane split_direction="vertical" {
+        pane borderless=true;
+      }
+      pane size="30%" stacked=true {
+        children borderless=true;
+      }
+    }
+  }
+}
+swap_tiled_layout name="right" {
+  tab min_panes=2 {
+    pane split_direction="vertical" {
+      pane borderless=true;
+      pane stacked=true {
+        children borderless=true;
+      }
+    }
+  }
+}
