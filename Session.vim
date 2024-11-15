@@ -13,12 +13,60 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +49 config.kdl
-badd +25 scripts/cal.sh
+badd +208 config.kdl
+badd +219 config_new.kdl
+badd +34 layouts/zjstatus.kdl
+badd +2 layouts/test.kdl
+badd +12 layouts/zjstatus.swap.kdl
+badd +1 scripts/sessions.sh
+badd +1 ~/.config/zellij/scripts/cal.sh
+badd +1 ~/.config/zellij/plugins/monocle.wasm
+badd +1 plugins/zjstatus/rust-toolchain
 argglobal
 %argdel
-edit scripts/cal.sh
+edit config.kdl
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
 argglobal
+balt plugins/zjstatus/rust-toolchain
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 208 - ((57 * winheight(0) + 38) / 77)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 208
+normal! 022|
+wincmd w
+argglobal
+if bufexists(fnamemodify("config_new.kdl", ":p")) | buffer config_new.kdl | else | edit config_new.kdl | endif
+if &buftype ==# 'terminal'
+  silent file config_new.kdl
+endif
 balt config.kdl
 setlocal fdm=manual
 setlocal fde=0
@@ -30,12 +78,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 26 - ((24 * winheight(0) + 34) / 68)
+let s:l = 218 - ((46 * winheight(0) + 38) / 77)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 26
-normal! 03|
+keepjumps 218
+normal! 05|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 106 + 106) / 213)
+exe 'vert 2resize ' . ((&columns * 106 + 106) / 213)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -43,12 +94,15 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
