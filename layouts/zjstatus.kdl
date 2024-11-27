@@ -42,11 +42,6 @@ layout {
         datetime_timezone "US/Eastern"
       }
     }
-    pane split_direction="vertical" {
-      pane;
-      pane size="30%" stacked=true {
-        children;
-      }
-    }
+    children;
   }
 }
