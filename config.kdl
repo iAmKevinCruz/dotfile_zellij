@@ -342,7 +342,7 @@ themes {
 //
 // theme "default"
 // theme "catppuccin-mocha"
-theme "onenord-port"
+theme "nord"
 
 // The folder in which Zellij will look for layouts
 // layout_dir "~/.config/zellij/layouts"
