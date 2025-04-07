@@ -50,3 +50,16 @@ themes:
     cyan: "#89dceb" # Sky
     black: "#181825" # Mantle
     white: "#cdd6f4"
+
+  onenord-port:
+    bg: "#1E1F2E"
+    fg: "#E5E9F0"
+    red: "#E06C75"
+    green: "#9EC183"
+    blue: "#81A1C1"
+    yellow: "#EBCB8B"
+    magenta: "#B988B0" 
+    orange: "#D08F70" 
+    cyan: "#88C0D0" 
+    black: "#3B4252" 
+    white: "#E5E9F0"
