@@ -177,6 +177,8 @@ keybinds {
   shared_except "locked" {
     bind "Ctrl g" { SwitchToMode "Locked"; }
     bind "Ctrl q" { Quit; }
+    bind "Alt i" { MoveTab "Left"; }
+    bind "Alt o" { MoveTab "Right"; }
     bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
     bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
     bind "Alt j" "Alt Down" { MoveFocus "Down"; }
@@ -224,6 +226,17 @@ plugins {
   status-bar { path "status-bar"; }
   strider { path "strider"; }
   compact-bar { path "compact-bar"; }
+}
+
+load_plugins {
+  // "file:/path/to/my-plugin.wasm"
+  // "https://example.com/my-plugin.wasm"
+  "~/.config/zellij/plugins/zjstatus/zjframes_v0.21.1.wasm" {
+    hide_frame_for_single_pane       "true"
+    hide_frame_except_for_search     "true"
+    hide_frame_except_for_scroll     "true"
+    hide_frame_except_for_fullscreen "true"
+  }
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
